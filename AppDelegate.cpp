@@ -36,18 +36,18 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     CCSize screenSize = pEGLView->getFrameSize();
     //set design screen size to the iPad and ExactFit (image is stretched to fill screen
-    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(768, 1024, kResolutionExactFit);
+//    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(1024, 768, kResolutionExactFit);
     
     //if device's screen width is greater than 768, use high definition images
     CCFileUtils *fileUtils = CCFileUtils::sharedFileUtils();
     std::vector<std::string> searchPaths = fileUtils->getSearchPaths();
-    if (screenSize.width > 768) {
+    if (screenSize.height > 768) {
         searchPaths.insert(searchPaths.begin(), "hd");
         fileUtils->setSearchPaths(searchPaths);
         pDirector->setContentScaleFactor(2);
         //or else, use standard definition
     } else {
-        searchPaths.insert(searchPaths.begin(), "hd");
+        searchPaths.insert(searchPaths.begin(), "sd");
         fileUtils->setSearchPaths(searchPaths);
         pDirector->setContentScaleFactor(1);
     }
@@ -57,7 +57,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     SimpleAudioEngine::sharedEngine()->preloadEffect( CCFileUtils::sharedFileUtils()->fullPathForFilename("score.wav").c_str() );
     
     // turn on display FPS
-    pDirector->setDisplayStats(false);
+    pDirector->setDisplayStats(true);
     
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
