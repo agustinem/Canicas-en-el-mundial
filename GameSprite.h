@@ -17,9 +17,7 @@ class GameSprite : public CCSprite {
 public:
     
 	CC_SYNTHESIZE(CCPoint, _nextPosition, NextPosition);
-	
 	CC_SYNTHESIZE(CCPoint, _vector, Vector);
-    
     CC_SYNTHESIZE(CCTouch *, _touch, Touch);
 	
 	GameSprite(void);
